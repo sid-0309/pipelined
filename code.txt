@@ -1,0 +1,38 @@
+main:
+add s0,zero,zero
+sub s1,s1,1
+
+outer_loop:
+add t0,zero,zero
+add t1,zero,zero
+
+inner_loop:
+add t2,t1,t1
+add t2,t2,t2
+lw t3,0(t2)
+add t2,t2,4
+lw t4,0(t2)
+
+slt t5,t4,t3
+add t6,zero,zero
+beq t5,t6,no_swap
+
+sw t4,0(t2)
+sub t2,t2,4
+sw t3,0(t2)
+add t0,zero,1
+
+no_sawp:
+add t1,t1,1
+sub t5,s1,t1
+slt t6,zero,t5
+bne t6,zero,inner_loop
+
+add t6,zero,zero
+beq t0,t6, done
+add s0,s0,1
+j outer_loop
+
+done:
+add v0,zero,10
+end

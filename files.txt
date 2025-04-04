@@ -1,0 +1,4 @@
+main.v
+alu.v
+memory.v
+control.v
